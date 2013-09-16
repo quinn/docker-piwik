@@ -11,7 +11,7 @@
 
 
 # Base system is the LTS version of Ubuntu.
-from   ubuntu:12.04
+from   base
 
 
 # Make sure we don't get notifications we can't answer during building.
@@ -24,11 +24,16 @@ run    ln -s /bin/true /sbin/initctl
 
 
 # Download and install everything from the repos and add geo location database
-add    ./apt/sources.list /etc/apt/sources.list
-run    apt-get --yes update; apt-get --yes upgrade
-run	   apt-get --yes install git supervisor nginx php5-mysql php5-gd mysql-server pwgen wget
-run    mkdir -p /srv/www/; cd /srv/www/; git clone -b 1.X https://github.com/piwik/piwik.git
+run    apt-get install -y -q software-properties-common
+run    add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
+run    add-apt-repository -y ppa:nginx/stable
+run    apt-get --yes update
+run    apt-get --yes upgrade --force-yes
+run    apt-get --yes install git supervisor nginx php5-mysql php5-gd mysql-server pwgen wget php5-fpm --force-yes
+run    mkdir -p /srv/www/; cd /srv/www/; git clone -b master https://github.com/piwik/piwik.git --depth 1
 run    cd /srv/www/piwik/misc; wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz; gzip -d GeoLiteCity.dat.gz
+run    apt-get --yes install php5-cli curl --force-yes
+run    cd /srv/www/piwik;  curl -sS https://getcomposer.org/installer | php; php composer.phar install
 
 
 # Load in all of our config files.
