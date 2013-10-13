@@ -10,9 +10,9 @@ For more information on Piwik and check out it's [website][1].
 Running this will build you a docker image with the latest version of both
 docker-piwik and Piwik itself.
 
-    git clone https://github.com/overshard/docker-piwik.git
+    git clone https://github.com/dz0ny/docker-piwik.git
     cd docker-piwik
-    docker build -t overshard/piwik .
+    docker build -t dz0ny/piwik .
 
 
 ## Running docker-piwik
@@ -35,7 +35,7 @@ future.
 From now on when you start/stop docker-piwik you should use the container id
 with the following commands. To get your container id, after you initial run
 type `sudo docker ps` and it will show up on the left side followed by the image
-name which is `overshard/piwik:latest`.
+name which is `dz0ny/piwik:latest`.
 
     sudo docker start <container_id>
     sudo docker stop <container_id>
