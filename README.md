@@ -10,9 +10,7 @@ For more information on Piwik and check out it's [website][1].
 Running this will build you a docker image with the latest version of both
 docker-piwik and Piwik itself.
 
-    git clone https://github.com/dz0ny/docker-piwik.git
-    cd docker-piwik
-    docker build -t dz0ny/piwik .
+    docker build -t dz0ny/piwik git://github.com/dz0ny/docker-piwik.git
 
 
 ## Running docker-piwik
