@@ -24,7 +24,7 @@ is the only thing running on your system you can map the port to 80 and no
 proxy is needed. i.e. `-p=80:80` Also be sure your mounted directory on your
 host machine is already created before running this `mkdir -p /mnt/piwik`.
 
-    sudo docker run -p=10000:80 -v=/mnt/piwik:/data overshard/piwik /start
+    sudo docker run -p=10000:80 -v=/mnt/piwik:/data dz0ny/piwik
 
 Note that the first time you run this it sets up your piwik user and database
 as well as locking down your root user. **This will echo out your database
