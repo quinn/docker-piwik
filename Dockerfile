@@ -24,6 +24,7 @@ run    ln -s /bin/true /sbin/initctl
 
 
 # Download and install everything from the repos and add geo location database
+run    apt-get update
 run    apt-get install -y -q software-properties-common
 run    add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
 run    add-apt-repository -y ppa:nginx/stable
