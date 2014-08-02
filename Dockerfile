@@ -11,7 +11,7 @@
 
 
 # Base system is the LTS version of Ubuntu.
-from   base
+from   ubuntu:latest
 
 
 # Make sure we don't get notifications we can't answer during building.
@@ -19,8 +19,8 @@ env    DEBIAN_FRONTEND noninteractive
 
 
 # An annoying error message keeps appearing unless you do this.
-run    dpkg-divert --local --rename --add /sbin/initctl
-run    ln -s /bin/true /sbin/initctl
+# run    dpkg-divert --local --rename --add /sbin/initctl
+# run    ln -s /bin/true /sbin/initctl
 
 
 # Download and install everything from the repos and add geo location database
@@ -52,11 +52,10 @@ add    ./scripts/start /start
 
 
 # Fix all permissions
-run	   chmod +x /start; chown -R www-data:www-data /srv/www/piwik
+run    chmod +x /start; chown -R www-data:www-data /srv/www/piwik
 
 
 # 80 is for nginx web, /data contains static files and database /start runs it.
 expose 80
 volume ["/data"]
 cmd    ["/start"]
-
